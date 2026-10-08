@@ -4,6 +4,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
 
+//1111111111111111111111111111111111111111 = array
+import java.util.ArrayList;
+import java.util.List;
 // ANSI Color Codes for enhanced terminal output
 class Colors {
     public static final String RESET = "\u001B[0m";
@@ -29,6 +32,11 @@ class Process implements Runnable {
     private int burstTime; // Total time the process requires to complete (in milliseconds)
     private int timeQuantum; // Time slice (time quantum) allowed per CPU access (in milliseconds)
     private int remainingTime; // Time left for the process to finish its execution
+
+      // 111111111111 - ADDED: priority and waiting-time information
+    private int priority;
+    private long waitingTime;
+    private long readyQueueEnterTime;
 
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum) {
