@@ -274,7 +274,15 @@ public class SchedulerSimulation {
             }
             System.out.println(Colors.BRIGHT_WHITE + "]" + Colors.RESET);
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
-            
+
+
+            // 111111111111 - ADDED: record waiting time before this CPU turn
+            Process currentProcess = processMap.get(currentThread);
+            currentProcess.startRunning();
+
+            // 111111111111 - ADDED: count this process CPU turn
+            contextSwitchCount++;
+
             // Start the thread, which will run the process for one time quantum
             currentThread.start();
             
