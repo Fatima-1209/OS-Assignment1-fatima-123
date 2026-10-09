@@ -38,14 +38,15 @@ class Process implements Runnable {
     private long waitingTime;
     private long readyQueueEnterTime;
 
-    // Constructor to initialize the process with name, burst time, and time quantum
-    public Process(String name, int burstTime, int timeQuantum) {
+ // 111111111111 - UPDATED: constructor now stores the process priority
+    public Process(String name, int burstTime, int timeQuantum, int priority) {
         this.name = name;
         this.burstTime = burstTime;
         this.timeQuantum = timeQuantum;
-        this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
+        this.remainingTime = burstTime;
+        this.priority = priority;
+        this.waitingTime = 0;
     }
-
     // This method will be called when the thread for this process is started
     @Override
     public void run() {
