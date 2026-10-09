@@ -47,6 +47,30 @@ class Process implements Runnable {
         this.priority = priority;
         this.waitingTime = 0;
     }
+
+    
+
+      // 111111111111 - ADDED: record when the process enters the ready queue
+    public void enterReadyQueue() {
+        readyQueueEnterTime = System.currentTimeMillis();
+    }
+
+    // 111111111111 - ADDED: add time spent waiting before this turn
+    public void startRunning() {
+        waitingTime += System.currentTimeMillis() - readyQueueEnterTime;
+    }
+
+    // 111111111111 - ADDED: return the priority
+    public int getPriority() {
+        return priority;
+    }
+
+    // 111111111111 - ADDED: return total waiting time in milliseconds
+    public long getWaitingTime() {
+        return waitingTime;
+
+
+        
     // This method will be called when the thread for this process is started
     @Override
     public void run() {
