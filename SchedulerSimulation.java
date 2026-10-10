@@ -323,7 +323,22 @@ public class SchedulerSimulation {
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN + 
                           "╚════════════════════════════════════════════════════════════════════════════════╝" + 
                           Colors.RESET + "\n");
+        
+        // 111111111111 - ADDED: print the required process statistics
+        System.out.println("\nProcess Name     Burst Time    Waiting Time    Turnaround Time");
+        System.out.println("--------------------------------------------------------------");
+        for (Process finishedProcess : allProcesses) {
+            long waiting = finishedProcess.getWaitingTime();
+            long turnaround = waiting + finishedProcess.getBurstTime();
+            System.out.printf("%-16s %-13d %-15d %-16d%n",
+                    finishedProcess.getName(), finishedProcess.getBurstTime(),
+                    waiting, turnaround);
+        }
+
+        // 111111111111 - ADDED: show the total number of CPU turns
+        System.out.println("\nTotal context switches: " + contextSwitchCount);
     }
+    
     
     // Method to add a process to the queue and map, while printing a "ready" message
     public static void addProcessToQueue(Process process, Queue<Thread> processQueue, 
