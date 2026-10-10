@@ -345,6 +345,9 @@ public class SchedulerSimulation {
                                         Map<Thread, Process> processMap) {
         // Create a new thread to run the process
         Thread thread = new Thread(process);
+
+           // 111111111111 - ADDED: mark the time this process enters the ready queue
+        process.enterReadyQueue();
         
         // Add the thread to the ready queue
         processQueue.add(thread);
@@ -356,6 +359,9 @@ public class SchedulerSimulation {
         System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + 
                           Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET + 
                           " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
+                          Colors.RESET);
+         // 111111111111 - ADDED: display priority when queued
+                          Colors.RESET + " │ Priority: " + Colors.YELLOW + process.getPriority() +
                           Colors.RESET);
     }
 }
